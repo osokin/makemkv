@@ -10,6 +10,9 @@ PORTVERSION=	1.7.2
 CATEGORIES=	multimedia
 DISTNAME=	${PORTNAME}_v${PORTVERSION}_oss${EXTRACT_SUFFIX}
 
+MAINTAINER=	osa@FreeBSD.org
+COMMENT=	Make MKV from Blu-ray and DVD
+
 MAKEFILE=	makefile.linux
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
