@@ -1,0 +1,31 @@
+--- makefile.linux.orig	2012-02-09 11:43:08.000000000 +0400
++++ makefile.linux	2012-03-05 18:46:15.000000000 +0400
+@@ -1,14 +1,15 @@
+ 
+ include makefile.common
+ 
+-GCC=gcc
+-RCC=rcc
+-MOC=$(strip $(shell which moc-qt4))
++GCC=${CC}
++RCC?=rcc
++MOC?=$(strip $(shell which moc-qt4))
+ ifeq ($(MOC),)
+ MOC=moc
+ endif
+ 
+-CXXOPTS=-Os -D_GNU_SOURCE -D_linux_
++#CXXOPTS=-Os -D_GNU_SOURCE -D_linux_
++CXXOPTS=-D_GNU_SOURCE ${CPPFLAGS}
+ 
+ BUILDINFO_ARCH_NAME=$(shell $(GCC) -dumpmachine)
+ BUILDINFO_BUILD_DATE=$(shell date)
+@@ -61,7 +62,7 @@
+ 	$(GCC) $(CXXOPTS) -o$@ $(MAKEMKVGUI_INC) $(LIBMAKEMKV_INC) $(SSTRING_INC) $(LIBDRIVEIO_INC) \
+ 	$(MAKEMKVGUI_SRC) $(MAKEMKVGUI_SRC_LINUX) $(MAKEMKVGUI_GEN) $(SSTRING_SRC) $(LIBDRIVEIO_SRC_PUB) \
+ 	-DHAVE_BUILDINFO_H -Itmp \
+-	-I/usr/include/qt4 -I/usr/lib/qt4/include -L/usr/lib/qt4 -L/usr/lib/qt4/lib -lc -lstdc++ \
++	-I${LOCALBASE}/include -I${LOCALBASE}/include/qt4 -L${LOCALBASE}/lib -L$(LOCALBASE)/lib/qt4 -lc -lstdc++ \
+ 	-lQtGui -lQtCore -lQtDBus -lpthread -lz -lrt
+ 
+ tmp/gen_buildinfo.h:
