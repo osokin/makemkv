@@ -1,5 +1,5 @@
---- ./libabi/src/sys_linux.c.orig	2012-03-05 15:36:44.000000000 +0400
-+++ ./libabi/src/sys_linux.c	2012-03-05 16:05:33.000000000 +0400
+--- libabi/src/sys_linux.c.orig	2012-02-09 11:43:08.000000000 +0400
++++ libabi/src/sys_linux.c	2012-03-06 12:41:53.000000000 +0400
 @@ -23,10 +23,19 @@
  #include <sys/stat.h>
  #include <dirent.h>
@@ -103,9 +103,9 @@
      buf->f_bavail  = st->f_bavail;
      buf->f_fat    = 0;
  
-+/* XXX FIX ME
++#if !defined(__FreeBSD__)
      if (st->f_type==MSDOS_SUPER_MAGIC) buf->f_fat=1;
-+*/
++#endif
  }
  
  int SYS_nstatfs(const char *path, SYS_statfs *buf)
