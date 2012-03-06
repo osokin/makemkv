@@ -1,0 +1,8 @@
+MakeMKV
+-------
+
+The makemkv program have two parts.  First part is the core of
+makemkv.  Its a console command -- makemkvcon, and its binary.
+Second part of makemkv is client front-end, written on QT4, and
+this part is open-source.
+
